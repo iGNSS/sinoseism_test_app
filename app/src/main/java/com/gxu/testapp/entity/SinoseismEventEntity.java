@@ -1,4 +1,4 @@
-package com.gxu.testapp;
+package com.gxu.testapp.entity;
 
 
 import java.io.Serializable;

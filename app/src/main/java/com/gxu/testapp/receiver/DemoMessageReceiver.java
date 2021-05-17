@@ -1,4 +1,4 @@
-package com.gxu.testapp;
+package com.gxu.testapp.receiver;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,11 +6,17 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.gxu.testapp.DemoApplication;
+import com.gxu.testapp.event.SinoseismEvent;
+import com.gxu.testapp.ui.AppMainActivity;
+import com.gxu.testapp.ui.EventDetail;
 import com.xiaomi.mipush.sdk.ErrorCode;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
 import com.xiaomi.mipush.sdk.MiPushMessage;
 import com.xiaomi.mipush.sdk.PushMessageReceiver;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -48,20 +54,19 @@ public class DemoMessageReceiver extends PushMessageReceiver {
         } else if(!TextUtils.isEmpty(message.getUserAccount())) {
             mUserAccount=message.getUserAccount();
         }
-        Log.d("DemoMessageReceiver", message.getContent());
-
-        String data=message.getContent();
-
-        Intent intent=new Intent(context, EventDetail.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-        Bundle bundle = new Bundle();
-        bundle.putString("data",data);
-        intent.putExtras(bundle);
-        context.startActivity(intent);
-
-
-
-
+        String data = message.getContent();
+        if (DemoApplication.isAppForeground()){
+            //如果APP在前台运行
+            EventBus.getDefault().post(new SinoseismEvent(data));
+        }else {
+            //如果APP在后台运行
+            Intent intent=new Intent(context, AppMainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+            Bundle bundle = new Bundle();
+            bundle.putString("data",data);
+            intent.putExtras(bundle);
+            context.startActivity(intent);
+        }
     }
     @Override
     public void onNotificationMessageArrived(Context context, MiPushMessage message) {
@@ -72,6 +77,12 @@ public class DemoMessageReceiver extends PushMessageReceiver {
             mAlias=message.getAlias();
         } else if(!TextUtils.isEmpty(message.getUserAccount())) {
             mUserAccount=message.getUserAccount();
+        }
+
+        String data = message.getContent();
+        if (DemoApplication.isAppForeground()) {
+            //如果APP在前台运行
+            EventBus.getDefault().post(new SinoseismEvent(data));
         }
     }
     @Override

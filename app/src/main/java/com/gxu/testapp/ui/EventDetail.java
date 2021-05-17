@@ -1,4 +1,4 @@
-package com.gxu.testapp;
+package com.gxu.testapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.gxu.testapp.MainActivity;
+import com.gxu.testapp.R;
+import com.gxu.testapp.entity.SinoseismEventEntity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,7 +109,7 @@ public class EventDetail extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent();
-                intent.setClass(EventDetail.this,MainActivity.class);
+                intent.setClass(EventDetail.this, MainActivity.class);
                 Bundle bundle1=new Bundle();
                 bundle.putSerializable("event",sinoseismEventEntity);
                 startActivity(intent);

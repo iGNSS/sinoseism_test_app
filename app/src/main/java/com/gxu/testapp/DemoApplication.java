@@ -69,6 +69,7 @@ public class DemoApplication extends Application {
         return false;
     }
 
+
     public static DemoHandler getHandler() {
         return sHandler;
     }

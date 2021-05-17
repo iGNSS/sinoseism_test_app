@@ -1,6 +1,8 @@
 package com.gxu.testapp;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -46,6 +48,20 @@ public class DemoMessageReceiver extends PushMessageReceiver {
         } else if(!TextUtils.isEmpty(message.getUserAccount())) {
             mUserAccount=message.getUserAccount();
         }
+        Log.d("DemoMessageReceiver", message.getContent());
+
+        String data=message.getContent();
+
+        Intent intent=new Intent(context, EventDetail.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+        Bundle bundle = new Bundle();
+        bundle.putString("data",data);
+        intent.putExtras(bundle);
+        context.startActivity(intent);
+
+
+
+
     }
     @Override
     public void onNotificationMessageArrived(Context context, MiPushMessage message) {

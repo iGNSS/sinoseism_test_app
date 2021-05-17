@@ -11,6 +11,7 @@ import com.xiaomi.mipush.sdk.MiPushClient;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
@@ -34,9 +35,9 @@ public class MainActivity extends AppCompatActivity {
         mLogView = (TextView) findViewById(R.id.log);
         // 设置别名
         findViewById(R.id.set_alias).setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
+                Log.d("MainActivity","设置别名");
                 final EditText editText = new EditText(MainActivity.this);
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle(R.string.set_alias)
@@ -224,4 +225,9 @@ public class MainActivity extends AppCompatActivity {
         }
         mLogView.setText(AllLog);
     }
+
+
+
+
+
 }

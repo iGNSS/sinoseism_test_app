@@ -1,6 +1,869 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"
+    android:layout_marginEnd="12dp"
+    android:orientation="vertical"
+    android:layout_marginTop="16dp">
+
+        <Button
+            android:id="@+id/back"
+            android:text="返回"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ></Button>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="微震事件的参数如下所示："
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_marginTop="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="项目ID"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/projectId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="projectId"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="工程ID"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/engineeringId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="engineeringId"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="事件名称"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/eventName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventName"
+                android:inputType="text"
+
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="微震事件时间"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/eventTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventTime"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="微震事件定位误差"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/eventLocError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventLocError"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="微震事件X轴坐标"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/eventXCoordinate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventXCoordinate"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="微震事件Y轴坐标"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/eventYCoordinate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventYCoordinate"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="微震事件Z轴坐标"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/eventZCoordinate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventZCoordinate"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="微震事件辐射能"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/eventEnergy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventEnergy"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="微震事件P波辐射能"
+                android:textSize="16sp"
+           />
+            <TextView
+                android:id="@+id/eventPEnergy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventPEnergy"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="微震事件S波辐射能"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/eventSEnergy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventSEnergy"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="矩震级"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/momentMagnitudeScale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="momentMagnitudeScale"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="里氏震级"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/richterScale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="richterScale"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="当地震级"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/localScale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="localScale"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="地震矩"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/seismicMoment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="seismicMoment"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="P波地震矩"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/pSeismicMoment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="pSeismicMoment"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="S波地震矩"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/sSeismicMoment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="sSeismicMoment"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="体变势"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/volumeChangePotential"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="volumeChangePotential"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="视应力"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/apparentStress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="apparentStress"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="视体积"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/apparentVolume"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="apparentVolume"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="转角频率"
+                android:textSize="16sp"
+                />
+            <TextView
+                android:id="@+id/cornerFrequency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="cornerFrequency"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="P波转角频率"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/pCornerFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="pCornerFrequency"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="match_parent"
+                android:text="S波转角频率"
+                android:textSize="16sp" />
+        <TextView
+            android:id="@+id/sCornerFrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="sCornerFrequency"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="P波低频幅值"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/pLowFreqAmplitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="pLowFreqAmplitude"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="S波低频幅值"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/sLowFreqAmplitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="sLowFreqAmplitude"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="静态应力降"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/staticStressDrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="staticStressDrop"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="动态应力降"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/dynamicStressDrop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="dynamicStressDrop"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:text="震源半径"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:id="@+id/sourceRadius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="sourceRadius"
+            android:inputType="text"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="8dp" />
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="-4dp">
+            <TextView
+                android:textSize="16sp"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="最大滑移速度"
+               />
+            <TextView
+                android:id="@+id/maxSlipVelocity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="maxSlipVelocity"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="-4dp">
+            <TextView
+                android:textSize="16sp"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="微震事件服务器ID"
+                />
+            <TextView
+                android:id="@+id/eventServerId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="eventServerId"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="-4dp">
+            <TextView
+                android:textSize="16sp"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="被触发传感器个数"
+                />
+            <TextView
+                android:id="@+id/triggeredSensorCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint=" triggeredSensorCount"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="-4dp">
+            <TextView
+                android:textSize="16sp"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="被触发传感器ID"
+                />
+            <TextView
+                android:id="@+id/triggeredSensorId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="triggeredSensorId"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="-4dp">
+            <TextView
+                android:textSize="16sp"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="参与定位传感器ID"
+                />
+            <TextView
+                android:id="@+id/locateSensorId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint="locateSensorId"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:textSize="16sp"
+            android:layout_marginTop="-4dp">
+            <TextView
+                android:textSize="16sp"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="信号类型"
+                />
+            <TextView
+                android:id="@+id/signalType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:hint=" signalType"
+                android:inputType="text"
+                android:layout_marginRight="16dp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+</LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>
+
+
+
+
+
+
+
+
+

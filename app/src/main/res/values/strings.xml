@@ -42,4 +42,17 @@
     <string name="unsubscribe_topic_fail"> Unsubscribe topic fail for %1$s.</string>
     <string name="set_accept_time_success"> Set accept time %1$s - %2$s success.</string>
     <string name="set_accept_time_fail"> Set accept time fail for %1$s.</string>
+    <string name="title_activity_app">appActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

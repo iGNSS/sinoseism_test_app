@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,11 +16,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.gxu.testapp.service.WarningService;
+import com.gxu.testapp.ui.MainActivity;
 import com.xiaomi.channel.commonutils.logger.LoggerInterface;
 import com.xiaomi.mipush.sdk.Logger;
 import com.xiaomi.mipush.sdk.MiPushClient;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -31,9 +32,6 @@ public class DemoApplication extends Application implements Application.Activity
 
     private static int activityCount = 0;
 
-    private static DemoHandler sHandler = null;
-    private static MainActivity sMainActivity = null;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -41,8 +39,9 @@ public class DemoApplication extends Application implements Application.Activity
         //初始化push推送服务
         if(shouldInit()) {
             MiPushClient.registerPush(this, APP_ID, APP_KEY);
-            MiPushClient.subscribe(this, "gxu-innovation-sinoseism", null);
+            MiPushClient.subscribe(this, "gxu-innovation-sinoseism-test", null);
         }
+        startService(new Intent(this, WarningService.class));
         //打开Log
         LoggerInterface newLogger = new LoggerInterface() {
 
@@ -62,9 +61,6 @@ public class DemoApplication extends Application implements Application.Activity
             }
         };
         Logger.setLogger(this, newLogger);
-        if (sHandler == null) {
-            sHandler = new DemoHandler(getApplicationContext());
-        }
     }
 
     private boolean shouldInit() {
@@ -78,15 +74,6 @@ public class DemoApplication extends Application implements Application.Activity
             }
         }
         return false;
-    }
-
-
-    public static DemoHandler getHandler() {
-        return sHandler;
-    }
-
-    public static void setMainActivity(MainActivity activity) {
-        sMainActivity = activity;
     }
 
     @Override
@@ -128,25 +115,5 @@ public class DemoApplication extends Application implements Application.Activity
 
     public static boolean isAppForeground(){
         return activityCount > 0;
-    }
-
-    public static class DemoHandler extends Handler {
-
-        private Context context;
-
-        public DemoHandler(Context context) {
-            this.context = context;
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            String s = (String) msg.obj;
-            if (sMainActivity != null) {
-                sMainActivity.refreshLogInfo();
-            }
-            if (!TextUtils.isEmpty(s)) {
-                Toast.makeText(context, s, Toast.LENGTH_LONG).show();
-            }
-        }
     }
 }

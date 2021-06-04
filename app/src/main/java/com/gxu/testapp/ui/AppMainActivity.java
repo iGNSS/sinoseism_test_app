@@ -2,6 +2,7 @@ package com.gxu.testapp.ui;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.gxu.testapp.R;
 import com.gxu.testapp.entity.SinoseismEventEntity;
@@ -21,6 +23,8 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import static com.gxu.testapp.ui.MainActivity.isPausePush;
 
 public class AppMainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -61,8 +65,7 @@ public class AppMainActivity extends AppCompatActivity implements View.OnClickLi
 
     Button startPushButton;
     Button pausePushButton;
-
-    private boolean isPausePush = false;
+    Toolbar toolbar;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -71,6 +74,10 @@ public class AppMainActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.app_activity_main);
         EventBus.getDefault().register(this);
         initViews();
+
+        toolbar = (Toolbar) findViewById(R.id.waveeven_toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Bundle bundle=getIntent().getExtras();
         if (bundle != null){
@@ -86,6 +93,16 @@ public class AppMainActivity extends AppCompatActivity implements View.OnClickLi
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish(); // back button
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initViews(){
@@ -129,9 +146,9 @@ public class AppMainActivity extends AppCompatActivity implements View.OnClickLi
         startPushButton.setOnClickListener(this);
         pausePushButton.setOnClickListener(this);
 
-        isPausePush = false;
-        startPushButton.setEnabled(false);
-        MiPushClient.resumePush(this, null);
+        startPushButton.setEnabled(isPausePush);
+        pausePushButton.setEnabled(!isPausePush);
+        //MiPushClient.resumePush(this, null);
     }
 
     private SinoseismEventEntity JsonResult(String data) {
@@ -249,6 +266,7 @@ public class AppMainActivity extends AppCompatActivity implements View.OnClickLi
         triggeredSensorIdText.setText(sinoseismEventEntity.getTriggeredSensorId());
         locateSensorIdText.setText(sinoseismEventEntity.getLocateSensorId());
         signalTypeText.setText(""+sinoseismEventEntity.getSignalType());
+        Toast.makeText(this,"微震事件项目ID:"+sinoseismEventEntity.getProjectId()+",数据已显示",Toast.LENGTH_SHORT).show();
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

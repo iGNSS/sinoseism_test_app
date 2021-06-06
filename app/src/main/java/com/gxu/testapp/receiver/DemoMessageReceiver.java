@@ -3,17 +3,15 @@ package com.gxu.testapp.receiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.Ringtone;
-import android.media.RingtoneManager;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 
 import com.gxu.testapp.DemoApplication;
 import com.gxu.testapp.event.AlertEvent;
+import com.gxu.testapp.event.CloseWarningEvent;
 import com.gxu.testapp.event.SinoseismEvent;
-import com.gxu.testapp.ui.AppMainActivity;
+import com.gxu.testapp.ui.SinoseismInfoActivity;
 import com.xiaomi.mipush.sdk.ErrorCode;
 import com.xiaomi.mipush.sdk.MiPushClient;
 import com.xiaomi.mipush.sdk.MiPushCommandMessage;
@@ -22,7 +20,6 @@ import com.xiaomi.mipush.sdk.PushMessageReceiver;
 
 import org.greenrobot.eventbus.EventBus;
 
-import java.io.IOException;
 import java.util.List;
 
 import static com.gxu.testapp.ui.MainActivity.isAppMainActivity;
@@ -63,13 +60,13 @@ public class DemoMessageReceiver extends PushMessageReceiver {
         } else if(!TextUtils.isEmpty(message.getUserAccount())) {
             mUserAccount=message.getUserAccount();
         }
+        EventBus.getDefault().post(new CloseWarningEvent());
         String data = message.getContent();
         if (DemoApplication.isAppForeground()){
             if(isAppMainActivity(context.getApplicationContext())==2) {
                 EventBus.getDefault().post(new SinoseismEvent(data));
-            }
-            else{
-                Intent intent = new Intent(context, AppMainActivity.class);
+            }else{
+                Intent intent = new Intent(context, SinoseismInfoActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 Bundle bundle = new Bundle();
                 bundle.putString("data",data);
@@ -79,7 +76,7 @@ public class DemoMessageReceiver extends PushMessageReceiver {
             }
         }else {
             //如果APP在后台运行
-            Intent intent=new Intent(context, AppMainActivity.class);
+            Intent intent=new Intent(context, SinoseismInfoActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
             Bundle bundle = new Bundle();
             bundle.putString("data",data);
@@ -104,8 +101,6 @@ public class DemoMessageReceiver extends PushMessageReceiver {
             //如果APP在前台运行
             EventBus.getDefault().post(new SinoseismEvent(data));
         }
-
-
     }
     @Override
     public void onCommandResult(Context context, MiPushCommandMessage message) {
@@ -114,27 +109,32 @@ public class DemoMessageReceiver extends PushMessageReceiver {
         String cmdArg1 = ((arguments != null && arguments.size() > 0) ? arguments.get(0) : null);
         String cmdArg2 = ((arguments != null && arguments.size() > 1) ? arguments.get(1) : null);
         if (MiPushClient.COMMAND_REGISTER.equals(command)) {
-            //Log.d("cylog", "Register Error Code:" + message.getResultCode());
+            Log.d("cylog", "Register Error Code:" + message.getResultCode());
             if (message.getResultCode() == ErrorCode.SUCCESS) {
                 mRegId = cmdArg1;
             }
         } else if (MiPushClient.COMMAND_SET_ALIAS.equals(command)) {
+            Log.d("cylog", "Set Alias Error Code:" + message.getResultCode());
             if (message.getResultCode() == ErrorCode.SUCCESS) {
                 mAlias = cmdArg1;
             }
         } else if (MiPushClient.COMMAND_UNSET_ALIAS.equals(command)) {
+            Log.d("cylog", "Unset Alias Error Code:" + message.getResultCode());
             if (message.getResultCode() == ErrorCode.SUCCESS) {
                 mAlias = cmdArg1;
             }
         } else if (MiPushClient.COMMAND_SUBSCRIBE_TOPIC.equals(command)) {
+            Log.d("cylog", "Subscribe topic Error Code:" + message.getResultCode());
             if (message.getResultCode() == ErrorCode.SUCCESS) {
                 mTopic = cmdArg1;
             }
         } else if (MiPushClient.COMMAND_UNSUBSCRIBE_TOPIC.equals(command)) {
+            Log.d("cylog", "Unregister topic Error Code:" + message.getResultCode());
             if (message.getResultCode() == ErrorCode.SUCCESS) {
                 mTopic = cmdArg1;
             }
         } else if (MiPushClient.COMMAND_SET_ACCEPT_TIME.equals(command)) {
+            Log.d("cylog", "Set Accept Time Error Code:" + message.getResultCode());
             if (message.getResultCode() == ErrorCode.SUCCESS) {
                 mStartTime = cmdArg1;
                 mEndTime = cmdArg2;
@@ -149,7 +149,7 @@ public class DemoMessageReceiver extends PushMessageReceiver {
         String cmdArg2 = ((arguments != null && arguments.size() > 1) ? arguments.get(1) : null);
         if (MiPushClient.COMMAND_REGISTER.equals(command)) {
             if (message.getResultCode() == ErrorCode.SUCCESS) {
-                //Log.d("cylog", "Register Error Code:" + message.getResultCode());
+                Log.d("cylog", "[onReceiveRegisterResult]Register Error Code:" + message.getResultCode());
                 mRegId = cmdArg1;
             }
         }

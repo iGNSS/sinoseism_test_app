@@ -53,9 +53,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        toolbar = (Toolbar) findViewById(R.id.Main_toolbar);
+        toolbar = findViewById(R.id.Main_toolbar);
         setSupportActionBar(toolbar);
-
 
         gotopdfdiary.setOnClickListener(new View.OnClickListener() {
             @Override

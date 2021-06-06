@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 import static com.gxu.testapp.ui.MainActivity.isPausePush;
 
-public class AppMainActivity extends AppCompatActivity implements View.OnClickListener {
+public class SinoseismInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     TextView engineeringIdText;
     TextView projectIdText;
@@ -71,11 +71,11 @@ public class AppMainActivity extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.app_activity_main);
+        setContentView(R.layout.sinoseism_info_activity_main);
         EventBus.getDefault().register(this);
         initViews();
 
-        toolbar = (Toolbar) findViewById(R.id.waveeven_toolbar);
+        toolbar = findViewById(R.id.waveeven_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 

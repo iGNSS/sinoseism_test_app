@@ -1,10 +1,8 @@
 package com.gxu.testapp.service;
 
-import android.app.IntentService;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -13,18 +11,15 @@ import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 import com.gxu.testapp.R;
 import com.gxu.testapp.event.AlertEvent;
-import com.gxu.testapp.ui.AppMainActivity;
+import com.gxu.testapp.event.CloseWarningEvent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
-
-import java.io.IOException;
 
 public class WarningService extends Service {
 
@@ -36,6 +31,7 @@ public class WarningService extends Service {
         EventBus.getDefault().register(this);
         mMediaPlayer = MediaPlayer.create(getApplication(),
                 RingtoneManager.getActualDefaultRingtoneUri(getApplication(), RingtoneManager.TYPE_RINGTONE));
+        mMediaPlayer.setLooping(true);
     }
 
     @Override
@@ -92,6 +88,14 @@ public class WarningService extends Service {
                 mMediaPlayer.seekTo(0);
             }
             mMediaPlayer.start();
+        }
+    }
+
+    @Subscribe
+    public void onCloseWarningEventArrived(CloseWarningEvent event){
+        if (mMediaPlayer.isPlaying()){
+            mMediaPlayer.pause();
+            mMediaPlayer.seekTo(0);
         }
     }
 }

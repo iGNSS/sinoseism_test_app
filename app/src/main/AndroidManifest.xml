@@ -15,7 +15,7 @@
         <activity android:name=".ui.SinoseimEventList"/>
         <activity android:name=".ui.PdfDiary" />
         <activity android:name=".ui.PdfShow" />
-        <activity android:name=".ui.AppMainActivity"/>
+        <activity android:name=".ui.SinoseismInfoActivity"/>
         <activity
             android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

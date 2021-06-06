@@ -92,7 +92,7 @@ public class SinoseimEventList extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 try {
                     Intent intent=new Intent();
-                    intent.setClass(SinoseimEventList.this, AppMainActivity.class);
+                    intent.setClass(SinoseimEventList.this, SinoseismInfoActivity.class);
                     Bundle bundle = new Bundle();
                     String data1=GetSinoseismEventList.get(i).toString();
                     bundle.putString("data",data1);

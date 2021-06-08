@@ -29,8 +29,9 @@ public class WarningService extends Service {
     public void onCreate() {
         super.onCreate();
         EventBus.getDefault().register(this);
-        mMediaPlayer = MediaPlayer.create(getApplication(),
-                RingtoneManager.getActualDefaultRingtoneUri(getApplication(), RingtoneManager.TYPE_RINGTONE));
+//        mMediaPlayer = MediaPlayer.create(getApplication(),
+//                RingtoneManager.getActualDefaultRingtoneUri(getApplication(), RingtoneManager.TYPE_RINGTONE));
+        mMediaPlayer = MediaPlayer.create(getApplication(), R.raw.alarm_music);
         mMediaPlayer.setLooping(true);
     }
 

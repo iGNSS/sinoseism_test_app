@@ -74,6 +74,7 @@ public class SinoseismEventEntity implements Serializable {
     //信号类型
     int signalType;
 
+
     public int getEngineeringId() {
         return engineeringId;
     }

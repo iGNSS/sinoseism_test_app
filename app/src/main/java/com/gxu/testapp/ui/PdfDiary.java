@@ -51,7 +51,7 @@ public class PdfDiary extends AppCompatActivity  {
     PullToRefreshView mPullToRefreshView;
     public ListViewAdapter adapter;
     public  ArrayList<PDF_diary> all_pdf_diary;
-    //String pdfUrl = "https://arxiv.org/pdf/1604.03540.pdf";
+
 
 
 

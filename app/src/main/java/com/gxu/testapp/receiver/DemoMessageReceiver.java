@@ -19,6 +19,8 @@ import com.xiaomi.mipush.sdk.MiPushMessage;
 import com.xiaomi.mipush.sdk.PushMessageReceiver;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -61,32 +63,43 @@ public class DemoMessageReceiver extends PushMessageReceiver {
             mUserAccount=message.getUserAccount();
         }
         EventBus.getDefault().post(new CloseWarningEvent());
-        String data = message.getContent();
-        if (DemoApplication.isAppForeground()){
-            if(isAppMainActivity(context.getApplicationContext())==2) {
-                EventBus.getDefault().post(new SinoseismEvent(data));
-            }else{
-                Intent intent = new Intent(context, SinoseismInfoActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        String tmp_data = message.getContent();
+        try {
+            JSONObject jsonObject=new JSONObject(tmp_data);
+            String data=jsonObject.getJSONObject("sinoseismEventEntity").toString();
+            Log.d("datatest", data);
+            if (DemoApplication.isAppForeground()){
+                if(isAppMainActivity(context.getApplicationContext())==2) {
+                    EventBus.getDefault().post(new SinoseismEvent(data));
+                }else{
+                    Intent intent = new Intent(context, SinoseismInfoActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("data",data);
+                    intent.putExtras(bundle);
+                    context.startActivity(intent);
+                }
+            }else {
+                //如果APP在后台运行
+                Intent intent=new Intent(context, SinoseismInfoActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
                 Bundle bundle = new Bundle();
                 bundle.putString("data",data);
                 intent.putExtras(bundle);
                 context.startActivity(intent);
-
             }
-        }else {
-            //如果APP在后台运行
-            Intent intent=new Intent(context, SinoseismInfoActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-            Bundle bundle = new Bundle();
-            bundle.putString("data",data);
-            intent.putExtras(bundle);
-            context.startActivity(intent);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+
+
     }
     @Override
     public void onNotificationMessageArrived(Context context, MiPushMessage message) {
         mMessage = message.getContent();
+
         if(!TextUtils.isEmpty(message.getTopic())) {
             mTopic=message.getTopic();
         } else if(!TextUtils.isEmpty(message.getAlias())) {
@@ -94,13 +107,25 @@ public class DemoMessageReceiver extends PushMessageReceiver {
         } else if(!TextUtils.isEmpty(message.getUserAccount())) {
             mUserAccount=message.getUserAccount();
         }
-        EventBus.getDefault().post(new AlertEvent());
 
-        String data = message.getContent();
-        if (DemoApplication.isAppForeground()) {
-            //如果APP在前台运行
-            EventBus.getDefault().post(new SinoseismEvent(data));
+        String tmp_data = message.getContent();
+
+        try {
+            JSONObject jsonObject=new JSONObject(tmp_data);
+            int tmp_flag=jsonObject.getInt("flag");
+            EventBus.getDefault().post(new AlertEvent(tmp_flag));
+            String data=jsonObject.getJSONObject("sinoseismEventEntity").toString();
+
+            if (DemoApplication.isAppForeground()) {
+                //如果APP在前台运行
+                EventBus.getDefault().post(new SinoseismEvent(data));
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+
+
+
     }
     @Override
     public void onCommandResult(Context context, MiPushCommandMessage message) {

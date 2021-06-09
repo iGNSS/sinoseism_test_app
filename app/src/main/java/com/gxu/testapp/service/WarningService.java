@@ -11,6 +11,7 @@ import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -23,7 +24,8 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class WarningService extends Service {
 
-    private MediaPlayer mMediaPlayer;
+    private MediaPlayer mMediaPlayer1;
+    private MediaPlayer mMediaPlayer2;
 
     @Override
     public void onCreate() {
@@ -31,8 +33,13 @@ public class WarningService extends Service {
         EventBus.getDefault().register(this);
 //        mMediaPlayer = MediaPlayer.create(getApplication(),
 //                RingtoneManager.getActualDefaultRingtoneUri(getApplication(), RingtoneManager.TYPE_RINGTONE));
-        mMediaPlayer = MediaPlayer.create(getApplication(), R.raw.alarm_music);
-        mMediaPlayer.setLooping(true);
+        mMediaPlayer1 = MediaPlayer.create(getApplication(), R.raw.emergency);
+        mMediaPlayer1.setLooping(true);
+
+        mMediaPlayer2 = MediaPlayer.create(getApplication(), R.raw.alarm_music);
+        mMediaPlayer2.setLooping(true);
+        //mMediaPlayer2=MediaPlayer.create(getApplicationContext(),R.raw.alarm_music);
+        //mMediaPlayer2.setLooping(true);
     }
 
     @Override
@@ -83,20 +90,49 @@ public class WarningService extends Service {
 
     @Subscribe
     public void onAlertEventArrived(AlertEvent event){
-        if (mMediaPlayer != null){
-            if (mMediaPlayer.isPlaying()){
-                mMediaPlayer.pause();
-                mMediaPlayer.seekTo(0);
+        int tmp_flag=event.getFlag();
+        Log.d("tmp_flag", String.valueOf(tmp_flag));
+        if(tmp_flag==1) {
+
+            if (mMediaPlayer2.isPlaying()){
+                mMediaPlayer2.pause();
+                mMediaPlayer2.seekTo(0);
             }
-            mMediaPlayer.start();
+
+            if (mMediaPlayer1 != null) {
+                if (mMediaPlayer1.isPlaying()) {
+                    mMediaPlayer1.pause();
+                    mMediaPlayer1.seekTo(0);
+                }
+                mMediaPlayer1.start();
+            }
+        }
+        else
+        {
+            if (mMediaPlayer1.isPlaying()){
+                mMediaPlayer1.pause();
+                mMediaPlayer1.seekTo(0);
+            }
+
+            if (mMediaPlayer2 != null) {
+                if (mMediaPlayer2.isPlaying()) {
+                    mMediaPlayer2.pause();
+                    mMediaPlayer2.seekTo(0);
+                }
+                mMediaPlayer2.start();
+            }
         }
     }
 
     @Subscribe
     public void onCloseWarningEventArrived(CloseWarningEvent event){
-        if (mMediaPlayer.isPlaying()){
-            mMediaPlayer.pause();
-            mMediaPlayer.seekTo(0);
+        if (mMediaPlayer1.isPlaying()){
+            mMediaPlayer1.pause();
+            mMediaPlayer1.seekTo(0);
+        }
+        if (mMediaPlayer2.isPlaying()){
+            mMediaPlayer2.pause();
+            mMediaPlayer2.seekTo(0);
         }
     }
 }
